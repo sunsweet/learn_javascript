@@ -1,1 +1,18 @@
+<<<<<<< HEAD
 this is a my first file
+=======
+添加文件
+git add test.txt
+git commit -m "first commit"
+上传
+git push origin master
+
+修改完代码后，使用git status可以查看文件的差别，
+使用git add 添加要commit的文件，
+也可以用git add -i来智能添加文件。
+之后git commit提交本次修改，
+git push上传到github。
+
+
+
+>>>>>>> 2ca99950afcc0052f0f119b50f8937401a7a46e9
