@@ -13,10 +13,35 @@
         <li class="sale important">Milk</li>
     </ul>
     <script>
-        //alert(typeof document.getElementById('purchases'));
-        //alert(document.getElementsByTagName('*').length);
-        alert(document.getElementsByClassName('sale important').length);
-        
+        alert(document.getElementById('purchases'));  //根据id 获取dom对象
+        alert(document.getElementsByTagName('*').length);//根据标签名获取dom对象数组
+        alert(document.getElementsByClassName('sale important')); // html5 新加入函数 根据classname获取dom对象数组
+        /**
+         * [getElementsByClassName 兼容老版浏览器函数]
+         * @param  {dom obj} node
+         * @param  {string} classname
+         * @return {dom obj array}
+         */
+        function getElementsByClassName(node, classname) {    
+            if(node.getElementsByClassName) {
+                return node.getElementsByClassName(classname);
+            } else {
+                var results = new Array();
+                var elems = node.getElementsByTagName("*");
+                for (var i = 0; i < elems.length; i++) {
+                    if(elems[i].className.indexOf(classname) != -1) {
+                        results[results.length] = elems[i];
+                    }
+                }
+                return results;
+            }
+        }
+        var lis = document.getElementsByTagName('li');
+        alert(lis.length);
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].setAttribute('id',i);
+            alert(lis[i].getAttribute('id'));
+        }
     </script>
 </body>
 </html>
