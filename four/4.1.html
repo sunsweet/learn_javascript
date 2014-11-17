@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Snapshots</h1>
+    <ul>
+        <li><a href="images/fireworks.jpg" title="A fireworks display" id="first" onclick="return showPic(this);">fireworks</a></li>
+        <li><a href="images/coffee.jpg" title="A cup of black coffee" onclick="return showPic(this);">Coffee</a></li>
+        <li><a href="images/rose.jpg" title="A red, red rose" onclick="return showPic(this);"> Rose</a></li>
+        <li><a href="images/bigben.jpg" title="The famous clock" onclick="return showPic(this);">Big Ben</a></li>
+    </ul>
+
+    <img src="images/placeholder.jpg" width="200px" height="200px" alt="" id="placeholder">
+    <p id="descript" class="hello">hfkafklahklfhakl</p>
+    <script>
+        function showPic(whitchpic) {
+            var placeholder = document.getElementById('placeholder');
+            var current_pic = whitchpic.getAttribute('href');
+            var title = whitchpic.getAttribute('title');
+            document.getElementById('descript').childNodes[0].nodeValue = title;
+            placeholder.setAttribute('src',current_pic);
+
+            return false;
+        }
+
+        alert(document.getElementById('descript').childNodes[1].nodeValue);
+
+        //alert(document.getElementById('descript').childNodes[0].nodeValue);
+
+        // var first = document.getElementById('first');
+        // showPic(first);
+        //alert(document.getElementsByTagName('body')[0].getElementsByTagName('*').length);
+        //alert(document.getElementsByTagName('body')[0].childNodes.length);
+        /*var body = document.getElementsByTagName('body')[0];
+        var length = 0;
+        for (var i = body.childNodes.length - 1; i >= 0; i--) {
+            if(body.childNodes[i].nodeType == 1) {
+                length++;
+            }
+        };
+        alert(length);*/
+    </script>
+</body>
+</html>
