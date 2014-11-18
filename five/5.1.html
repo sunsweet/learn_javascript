@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <a href="http://www.baidu.com" onclick="popUp(this.href);return false;">baidu</a>
+    <a href="http://www.qq.com" onclick="popUp(this.getAttribute('href'));return false;">qq</a>
+    <script>
+        function popUp (winUrl) {
+            window.open(winUrl,'popup',"width=320,height=480");
+            return false;
+        }
+    </script>
+</body>
+</html>
