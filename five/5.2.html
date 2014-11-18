@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件绑定</title>
+</head>
+<body>
+    <a href="http://www.baidu.com" class="popUp">baidu</a>
+    <a href="http://www.qq.com" class="popUp">qq</a>
+    <script>
+        function getElementsByClassName(node, classname){
+            if(node.getElementsByClassName) {
+                return node.getElementsByClassName(classname);
+            } else {
+                var all_node = node.getElementsByTagName('*');
+                var result = new Array();
+                for (var i = all_node.length - 1; i >= 0; i--) {
+                    if(all_node[i].getAttribute('class') == classname){
+                        result[result.length] = all_node[i];
+                    }
+                };
+                return result;
+            }
+        }
+        function popUp(href) {
+            window.open(href, 'popUp',"width=320,height=480");
+        }
+
+        window.onload = function () {
+            if(!document.getElementsByTagName) return false;
+            var popUps = getElementsByClassName(document.getElementsByTagName('body')[0],'popUp');
+            for (var i = popUps.length - 1; i >= 0; i--) {
+                popUps[i].onclick = function () {
+                    popUp(this.href);
+                    return false;
+                }
+            };
+        }
+    </script>
+</body>
+</html>
