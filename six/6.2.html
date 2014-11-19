@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Snapshots</h1>
+    <ul>
+        <li><a class="pic_src" href="../four/images/fireworks.jpg" title="A fireworks display" id="first" >fireworks</a></li>
+        <li><a class="pic_src" href="../four/images/coffee.jpg" title="A cup of black coffee" >Coffee</a></li>
+        <li><a class="pic_src" href="../four/images/rose.jpg" title="A red, red rose" > Rose</a></li>
+        <li><a class="pic_src" href="../four/images/bigben.jpg" title="The famous clock" >Big Ben</a></li>
+    </ul>
+    <div id="placeholder">
+        <img src="../four/images/placeholder.jpg" width="200px" height="200px" alt="" >
+        <p id="descript" class="hello">hfkafklahklfhakl</p>
+    </div>
+    <script>
+        var forms = document.getElementsByTagName('form');  //DOM Core 提供的方法
+        //等价于
+        var forms = document.forms;  //HTML_DOM 提供的对象
+
+        var src = element.getAttribute("src");//DOM Core 提供的方法
+        //等价于
+        var src = element.src;//HTML_DOM 提供的对象
+
+        var source = element.getAttribute("href");
+        //等价于
+        var source = element.href;
+
+        element.setAttribute('src',source);
+        //等价于
+        element.src = source;
+
+    </script>
+</body>
+</html>
