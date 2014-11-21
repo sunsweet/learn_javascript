@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建dom元素</title>
+</head>
+<body>
+    <div id="testdiv1" style="margin:0px;color:black;font-family:'Arial';">
+        
+    </div>
+    <div id="testdiv2">
+        
+    </div>
+
+    <script>
+    window.onload = function (){
+        append_div1();
+        append_div2();
+        alert(document.getElementById('testdiv1').style.fontFamily);
+    }
+
+    function append_div1 () {
+        var testdiv1 = document.getElementById('testdiv1');
+        testdiv1.innerHTML = '<p>this is<em> my </em> content.</p>';
+    }
+    function append_div2 () {
+        var testdiv2 = document.getElementById('testdiv2');
+        var child_p = document.createElement('p');
+        child_p.appendChild(document.createTextNode('this is'));
+        child_p.appendChild(document.createElement('em').appendChild(document.createTextNode(' my ')));
+        child_p.appendChild(document.createTextNode(' content'));
+        testdiv2.appendChild(child_p);
+    }
+
+    </script>
+</body>
+</html>
