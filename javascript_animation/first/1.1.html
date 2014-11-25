@@ -7,15 +7,116 @@
     
 </head>
 
-<body>
+<body onunload="alert('unload')">
     <input type="text" name="user" value="hello" form="myform">
     <form name='myform' action="#">
         <input type="text" name="username" value="default_name">
         <input type="button" id="btn" name="button" value="submit">
     </form>
+    <a href="http://www.baidu.com" id="a_link">百度链接</a>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
+    <div>文本</div>
     <script>
-    window.name = 'window';
+        /**
+         * [EventUtil description]
+         * 封装dom事件处理，适应所有浏览器
+         * @type {Object}
+         */
         var EventUtil = {
+            /**
+             * [addHandler description]
+             * 给指定的dom原名苏 添加事件处理
+             * @param {[type]} element [description]
+             * @param {[type]} type    [description]
+             * @param {[type]} handler [description]
+             */
             addHandler: function(element, type, handler) {
                 if(element.addEventListener){
                     element.addEventListener(type,handler,false);
@@ -25,6 +126,14 @@
                     element['on'+type] = handler;
                 }
             },
+            /**
+             * [removeHandler description]
+             * 给指定的dom元素 移除事件处理
+             * @param  {[type]} element [description]
+             * @param  {[type]} type    [description]
+             * @param  {[type]} handler [description]
+             * @return {[type]}         [description]
+             */
             removeHandler: function(element, type, handler) {
                 if(element.removeEventlistener) {
                     element.removeEventlistener(type, handler, false);
@@ -34,19 +143,43 @@
                     element['on'+type] = null;
                 }
             },
+            /**
+             * [getEvent description]
+             * 获取事件
+             * @param  {[type]} event [description]
+             * @return {[type]}       [description]
+             */
             getEvent: function(event) {
                 return event ? event : window.event;
             },
+            /**
+             * [getTarget description]
+             * 获取事件的目标，a链接点击后，返回a元素对象
+             * @param  {[type]} event [description]
+             * @return {[type]}       [description]
+             */
             getTarget: function (event) {
-                return event.tartet || event.srcElement;
+                return event.target || event.srcElement;
             },
-            preventDefault: function(event) {
+            /**
+             * [preventDefault description]
+             * 阻止事件触发后的默认行为，例如链接的默认行为，被单击时导航到href
+             * @param  {[type]} event [description]
+             * @return {[type]}       [description]
+             */
+            preventDefault: function(event) {     
                 if (event.preventDefault) {
                     event.preventDefault();
                 } else {
                     event.returnValue = false;
                 }
             },
+            /**
+             * [stopPropagation description]
+             * 停止事件捕获或冒泡
+             * @param  {[type]} event [description]
+             * @return {[type]}       [description]
+             */
             stopPropagation: function(event) {
                 if (event.stopPropagation) {
                     event.stopPropagation();
@@ -58,11 +191,20 @@
 
         };
 
-        var btn = document.getElementById('btn');
-        EventUtil.addHandler(btn,'click',handler);
-        function handler(event) {
-            alert(event.type);
-        }
+        var a_link = document.getElementById('a_link');
+        EventUtil.addHandler( a_link,'click',function (event){
+            event = EventUtil.getEvent(event); //获取事件
+            EventUtil.preventDefault(event);   //阻止事件默认处理
+            var a = EventUtil.getTarget(event); //获取事件的目标，即触发此事件的元素
+            console.log(this.href);
+            
+        });
+
+        
+        // function handler(event) {
+        //     alert('hello');
+        // }
+
     </script> 
 </body>
 </html>
