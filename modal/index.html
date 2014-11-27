@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+    
+        .modal {
+            background-color: #ffffff;
+            border: 1px solid rgba(234, 238, 250, 0.6);
+            border-radius: 6px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+            color: #808080;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 13px;
+            font-weight: normal;
+            left: 20px;
+            line-height: 18px;
+            margin: 0;
+            position: fixed;
+            top: 20px;
+            width: 400px;
+            z-index: 100000;
+        }
+        
+
+        .modal a.modal_close {
+            color: #999;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 17px;
+            font-weight: normal;
+            line-height: 10px;
+            position: absolute;
+            right: 15px;
+            text-decoration: none;
+            top: 15px;
+        }
+        .modal .modal_header {
+            border-bottom: 1px solid #eeeeee;
+            margin: 0;
+            padding: 5px 15px;
+        }
+        .modal .modal_header h1 {
+            color: #404040;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 36px;
+            margin: 0;
+            text-align:center;
+        }
+        .modal .modal_body {
+            padding: 15px;
+        }
+        .modal .modal_footer {
+            background-color: #f5f5f5;
+            border-radius: 0 0 6px 6px;
+            border-top: 1px solid #eeeeee;
+            box-shadow: 0 1px 0 #fff inset;
+            display: block;
+            margin-bottom: 0;
+            padding: 14px 15px 15px;
+            text-align: center;
+        }
+        .modal .modal_footer a.btn {
+            background-repeat: no-repeat;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            color: #333;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 13px;
+            line-height: normal;
+            padding: 5px 14px 6px;
+            text-decoration: none;
+            transition: all 0.2s linear 0s;
+        }
+        .modal .modal_footer a.btn.primary {
+            background-color: #999;
+            background-repeat: repeat-x;
+            color: #fff;
+            margin-right: 15px;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+        }
+        .modal .modal_footer a.btn.primary:hover {
+            background-color: #444;
+            border: 1px solid #444;
+        }
+
+
+        
+    </style>
+</head>
+<body>
+   
+    <div id="modal" class="modal" style="display:none;">
+        <a class="modal_close" href="#">X</a>
+        <div class="modal_header">
+            <h1>温馨提示</h1>
+        </div>
+        <div class="modal_body">
+            无货了
+        </div>
+        <div class="modal_footer">
+            <a title="Close" class="btn primary">关闭</a>
+        </div>
+    </div>
+    <button type="button" onclick="show()">click me</button>
+    <div>        hello world    </div>
+    <div>        hello world    </div>
+    <div>        hello world    </div>
+    <div>        hello world    </div>
+    
+    <script>
+        function Modal() {
+                /*document.body.appendChild(shadow);
+                */;
+        }
+     
+        Modal.prototype = {
+            constructor: Modal,
+            set_shadow: function () {
+                var shadow = document.createElement('div');
+                shadow.style['position'] = 'fixed';
+                shadow.style['opacity'] = '0.2';
+                shadow.style['-ms-filter'] = 'progid:DXImageTransform.Microsoft.Alpha(Opacity=20)';
+                shadow.style['filter'] = 'alpha(opacity=20)';
+                shadow.style['top'] = '0px';
+                shadow.style['left'] = '0px';
+                shadow.style['backgroundColor'] = '#000000';  //注意要用backgroundColor
+                shadow.style['z-index'] = '99999';
+                shadow.style.width = (window.screen.width>document.body.scrollWidth?window.screen.width:document.body.scrollWidth) +'px';
+                shadow.style.height = (window.screen.height>document.body.scrollHeight?window.screen.height:document.body.scrollHeight)+'px';
+                shadow.style.display = "block";
+                this.the_shadow = shadow;
+            },
+            the_shadow:null,
+            show_shadow: function(){
+                this.set_shadow();
+                document.body.appendChild(this.the_shadow);
+            },
+          
+            set_dialog: function(head_text,body_text) {
+                
+                var dialog = document.createElement('div');
+                dialog.style.backgroundColor = '#ffffff';
+                dialog.style.border = '1px solid rgba(234, 238, 250, 0.6)';
+                dialog.style.borderRadius = '6px';
+                dialog.style.boxShadow = '0 0 3px rgba(0, 0, 0, 0.6)';
+                dialog.style.color = '#808080';
+                dialog.style.fontSize = '13px';
+                dialog.style.fontWeight = 'normal';
+                dialog.style.lineHeight = '18px';
+                dialog.style.margin = '0px';
+                dialog.style.position = 'fixed';
+                dialog.style.width = '400px';
+                dialog.style['z-index'] = '100000';
+                dialog.style.display = 'block';
+                dialog.style.left = (window.screen.width-dialog.style.width/2) + 'px';
+                dialog.style.top  =  '50px';
+                var dialog_close = document.createElement('a');
+                dialog_close.appendChild(document.createTextNode('X'));
+                dialog_close.style.color = '#999';
+                dialog_close.style.fontSize = '17px';
+                dialog_close.style.fontHeight = '10px';
+                dialog_close.style.fontWeight = 'normal';
+                dialog_close.style.position = 'absolute';
+                dialog_close.style.right = '15px';
+                dialog_close.style.top = '15px';
+                dialog_close.style.textDecoration = 'none';
+                shadow = this.the_shadow;
+                dialog_close.onclick = function() {
+                    this.parentElement.style.display = 'none';
+                    shadow.style.display = 'none';
+                    // shadow.style.display = "none";
+                };
+
+                
+                var dialog_head = document.createElement('div');
+                dialog_head.style.borderBottom = '1px solid #eeeeee';
+                dialog_head.style.margin = '0';
+                dialog_head.style.padding = '5px 15px';
+                var dialog_head_h1 = document.createElement('h1');
+                dialog_head_h1.style.color = '#404040';
+                dialog_head_h1.style.fontFamily = '"Helvetica Neue",Helvetica,Arial,sans-serif';
+                dialog_head_h1.style.fontSize = '18px';
+                dialog_head_h1.style.fontWeight = 'bold';
+                dialog_head_h1.style.lineHeight = '36px';
+                dialog_head_h1.style.margin = ' 0';
+                dialog_head_h1.style.textAlign = 'center';
+                dialog_head_h1.appendChild(document.createTextNode(head_text));
+                dialog_head.appendChild(dialog_head_h1);
+
+                var dialog_body = document.createElement('div');
+                dialog_body.style.padding = '15px';
+                dialog_body.appendChild(document.createTextNode(body_text));
+
+                var dialog_footer = document.createElement('div');
+                dialog_footer.style.backgroundColor = '#f5f5f5';
+                dialog_footer.style.borderRadius = '0 0 6px 6px';
+                dialog_footer.style.borderTop = '1px solid #eeeeee';
+                dialog_footer.style.boxShadow = '0 1px 0 #fff inset';
+                dialog_footer.style.display = 'block';
+                dialog_footer.style.marginBottom = '0';
+                dialog_footer.style.padding = '14px 15px 15px';
+                dialog_footer.style.textAlign = 'center';
+                var dialog_footer_button = document.createElement('a');
+                // dialog_footer_button.style.backgroundRepeat = 'no-repeat';
+                dialog_footer_button.style.border = '1px solid transparent';
+                dialog_footer_button.style.borderRadius = '3px';
+                dialog_footer_button.style.color = '#333';
+                dialog_footer_button.style.cursor = 'pointer';
+                dialog_footer_button.style.display = 'inline-block';
+                dialog_footer_button.style.fontSize = '13px';
+                dialog_footer_button.style.lineHeight = 'normal';
+                dialog_footer_button.style.padding = '5px 14px 6px';
+                dialog_footer_button.style.textDecoration = 'none';
+                dialog_footer_button.style.transition = 'all 0.2s linear 0s';
+                dialog_footer_button.style.backgroundColor = '#999';
+                dialog_footer_button.style.backgroundRepeat = 'repeat-x';
+                dialog_footer_button.style.color = '#fff';
+                dialog_footer_button.style.marginRight = '15px';
+                dialog_footer_button.style.textShadow = '0 1px 0 rgba(0, 0, 0, 0.25)';
+                dialog_footer_button.onmouseover = function () {
+                    this.style.backgroundColor = '#444';
+                    this.style.border = '1px solid #444';
+                };
+                dialog_footer_button.appendChild(document.createTextNode('关闭'));
+                dialog_footer.appendChild(dialog_footer_button);
+                dialog.appendChild(dialog_close);
+                dialog.appendChild(dialog_head);
+                dialog.appendChild(dialog_body);
+                dialog.appendChild(dialog_footer);
+
+
+                this.the_dialog = dialog;
+            },
+            the_dialog:null,
+            show_dialog : function () {
+                this.set_dialog('温馨提示','没货啦');
+                document.body.appendChild(this.the_dialog);
+            }
+        }
+
+        function show() {
+            var a_modal = new Modal();
+            a_modal.show_shadow();
+            a_modal.show_dialog();
+            /*var modal = document.getElementById('modal');
+            modal.style.display = "block";
+            modal.style.left = (window.screen.width-modal.clientWidth)/2 + 'px';
+            modal.style.top  =  '50px';*/
+        }
+        
+         
+
+
+        
+
+    </script>
+    
+</body>
+</html>
