@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建自定义类型的一般模式</title>
+    <script>
+    function Person (name, age, job) {
+        this.name = name;
+        this.age = age;
+        this.job = job;
+    }
+    //person的公共属性
+    Person.prototype.className = 'Person';
+    //person的公共方法
+    Person.prototype.getClassName = function() {
+        return this.className;
+    }
+    Person.prototype.getName = function() {  
+        return this.name;
+    }
+    Person.prototype.sayHello = function(arguments) {
+        var str = 'hello ! '+ this.getName();
+        console.log(str);
+    }
+
+    //示例
+    var p1 = new Person('yang','12','developer');
+    p1.sayHello(); //输出 hello ! yang
+    </script>
+</head>
+<body>
+
+    
+</body>
+</html>
