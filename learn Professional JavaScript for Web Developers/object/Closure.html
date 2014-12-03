@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闭包</title>
+    <script>
+    function getCompare(propertyName) {
+      return function(obj1,obj2) {
+        var v1 = obj1[propertyName];
+        var v2 = obj2[propertyName];
+        if(v1 < v2) {
+          return -1;
+        } else {
+          return 1;
+        }
+      }
+    }
+
+    var arr = [
+      {width:10,height:19},
+      {width:11,height:16},
+      {width:9,height:23}
+    ];
+
+    arr.sort(getCompare('width'));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
