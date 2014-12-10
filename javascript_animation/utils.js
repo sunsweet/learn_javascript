@@ -168,6 +168,7 @@ window.utils.colorToRGB = function (color, alpha) {
 };
 
 /**
+ * 确定一个坐标是否在这个矩形里面
  * Determine if a rectangle contains the coordinates (x,y) within it's boundaries.
  * @param {object}  rect  Object with properties: x, y, width, height.
  * @param {number}  x     Coordinate position x.
