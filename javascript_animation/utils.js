@@ -183,6 +183,7 @@ window.utils.containsPoint = function (rect, x, y) {
 };
 
 /**
+ * 确定两个矩形是否交叠
  * Determine if two rectangles overlap.
  * @param {object}  rectA Object with properties: x, y, width, height.
  * @param {object}  rectB Object with properties: x, y, width, height.
