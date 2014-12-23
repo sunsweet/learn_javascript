@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>俄罗斯方块</title>
+    <style>
+    canvas{
+        border: 1px solid blue;
+    }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="600" height="600"></canvas>
+    <script src="../utils.js"></script>
+    <script>
+    function I (){
+        this.x = 0;
+        this.y = 0;
+        this.color = "#000000";
+        this.rotation = 0;
+    }
+    I.prototype.draw = function (context) {
+        context.save();
+        context.translate(this.x,this.y);
+        context.rotation(this.rotation);
+        context.lineWidth = 1;
+        context.fillStyle = this.color;
+        context.beginPath();
+        context.moveTo(-50,-25);
+
+    }
+    </script>
+    
+</body>
+</html>
