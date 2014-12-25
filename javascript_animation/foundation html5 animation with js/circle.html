@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Circle</title>
+    <style>
+    canvas{
+        border: 1px solid blue;
+    }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <div id="mouse"></div>
+    <script src="../utils.js"></script>
+
+    <script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas'),
+            context = canvas.getContext('2d'),
+            centerX = canvas.width/2,
+            centerY = canvas.height/2,
+            R = 100,
+            angle = 0,
+            X = centerX + Math.cos(angle/180*Math.PI)*R;
+            Y = centerY + Math.sin(angle/180*Math.PI)*R;
+
+        (function drwaCircle() {
+            window.requestAnimationFrame(drwaCircle,canvas);
+            if(angle > 720) return;
+            context.beginPath();
+            context.moveTo(X,Y);
+            X = centerX + Math.cos(angle/180*Math.PI)*R;
+            Y = centerY + Math.sin(angle/180*Math.PI)*R;
+            context.lineTo(X,Y); 
+            if(angle%30 == 0 && angle > 360) {
+                context.moveTo(centerX,centerY);
+                context.lineTo(X,Y);
+            };
+            context.stroke();
+            angle += 1;
+        }());
+        
+        var canvas = document.getElementById('canvas'),
+        mouse = utils.captureMouse(canvas);
+        canvas.addEventListener('mousedown',function(){
+            var mouseDiv = document.getElementById('mouse');
+            mouseDiv.innerHTML = "x:  "+mouse.x + ", y: " + mouse.y; 
+            
+        },false);
+
+    }
+    </script>
+    
+</body>
+</html>
