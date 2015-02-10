@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SIN()</title>
+    <style>
+    canvas{
+        border: 1px solid blue;
+    }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <script src="../utils.js"></script>
+
+    <script>
+    window.onload = function () {
+        var canvas = document.getElementById('canvas'),
+            context = canvas.getContext('2d'),
+            centerX = canvas.width/2;
+            centerY = canvas.height/2;
+            L_xpos = 0,
+            L_ypos = centerY;
+
+            R_xpos = canvas.width;
+            R_ypos = centerY;
+            
+            U_xpos = centerX;
+            U_ypos = 0;
+
+            angle = 0;
+        (function drwaSin() {
+            window.requestAnimationFrame(drwaSin,canvas);
+            if(L_xpos >= 200){
+               return ;
+            }
+            context.beginPath();
+            context.moveTo(L_xpos,L_ypos);
+            console.log("from:x "+L_xpos+','+'y '+L_ypos);
+            L_xpos += 1;
+            angle += 0.1;
+            L_ypos += Math.cos(angle);
+            context.lineTo(L_xpos,L_ypos);
+            console.log("to:x "+L_xpos+','+'y '+L_ypos);
+
+            // context.moveTo(R_xpos,R_ypos);
+            // R_xpos -= 1;
+            // angle += 0.1;
+            // R_ypos += Math.sin(angle)*2;
+            // context.lineTo(R_xpos,R_ypos); 
+
+            // context.moveTo(U_xpos,U_ypos);
+            // U_ypos += 1;
+            // angle += 0.1;
+            // U_xpos += Math.sin(angle)*2;
+            // context.lineTo(U_xpos,U_ypos); 
+
+            context.stroke();
+        }());
+
+
+    }
+    </script>
+    
+</body>
+</html>
