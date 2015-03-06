@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+<link rel="stylesheet" href="css/ui-box.css">
+<link rel="stylesheet" href="css/ui-base.css">
+<link rel="stylesheet" href="css/ui-color.css">
+<link rel="stylesheet" href="css/appcan.icon.css">
+<link rel="stylesheet" href="css/appcan.control.css">
+<link rel="stylesheet" href="ele_order_content/css/main.css">
+<link rel="stylesheet" href="indexCon_3/css/main.css">
+</head>
+<body class="um-vp bc-bg" ontouchstart>
+<div id="inner"> </div>
+<div id="template" style="display:none">
+    <div class="ub-fh h-bg ub-img2" style="background-image:url('ele_order_content/css/myImg/yz_order_address_bg_top.png');"></div>
+    <div class="ub c-gra-48 uinn-eo1 ub-ac ubb sc-border-blue m-b">
+        <div class="ub ub-f1 ub-ver  t-wh" ontouchstart="appcan.touch()" onClick="appcan.openWinWithUrl('ele_address','ele_address.html');">
+            <div class="ulev-4 line-hei umar-t"> {consignee.provincename} {consignee.cityname} {consignee.districtname} </div>
+            <div class="ulev-4 line-hei umar-t"> {consignee.address} </div>
+            <div class="ulev-4 line-hei umar-t"> {consignee.consignee} 
+                {consignee.mobile} </div>
+        </div>
+    </div>
+    <div class="ub white-bg ub-ac uinn-a7 ubb b-gra-d6" ontouchstart="appcan.touch()" onClick="appcan.openWinWithUrl('ele_goods','ele_goods.html');">
+        <div class="ulev-4 ub-f1"> 共9件商品 </div>
+        <div class="ub ub-ver ub-ae umar-r p-t-b">
+            <div class="ub sc-text-active ulev1">
+                <div class="ulev-4  uinn-eo9"> 共计: </div>
+                <div class="t-red1 ulev-4 ufm1 tx-r uinn-eo9"> ￥{total_price} </div>
+            </div>
+            <div class="ub ">
+                <div class="t-gra-95 ulev-4 uinn-eo9"> 含运费： </div>
+                <div class="t-red1 t-gra-95 ulev-4 ufm1 tx-r uinn-eo9"> ￥{post_price} </div>
+            </div>
+        </div>
+        [loop data=goods item=item]
+        <div><a href="goods.php?id={item.goods_id}">{item.goods_name}</a><span>{item.price|money} {item.num|intval}</span></div>
+        [/loop]
+        <div class="fa fa-angle-right ulev2 sc-text"></div>
+    </div>
+    <div class="uinn-eo3 white-bg" ontouchstart="appcan.touch()" onClick="appcan.openWinWithUrl('ele_pay','ele_pay.html');">
+        <div class="uinn-eo5 ub ubb b-gra-d6 ub-ac">
+            <div class="ub-f1 ulev-4 t-gra-9"> 支付方式：在线支付 </div>
+            <div class="fa fa-angle-right ulev2 sc-text"></div>
+        </div>
+    </div>
+    <div class="uinn-eo3 white-bg">
+        <div class="uinn-eo5 ub ubb b-gra-d6 ub-ac">
+            <div class="ub-f1 ulev-4 t-gra-9"> 付款方式：{pay_name} </div>
+        </div>
+    </div>
+    <div class="uinn-eo3 white-bg" ontouchstart="appcan.touch()" onClick="appcan.openWinWithUrl('ele_distribution','ele_distribution.html');">
+        <div class="uinn-eo5 ub ubb b-gra-d6 ub-ac">
+            <div class="ub-f1 ulev-4 t-gra-9"> 配送方式：{shipping_name} </div>
+             [loop data=shop_list item=item]
+        <div>{item.shop_name}</div>
+        [/loop]
+            <div class="fa fa-angle-right ulev2 sc-text"></div>
+        </div>
+    </div>
+    <div class="uinn-eo3 white-bg" ontouchstart="appcan.touch()" onClick="appcan.openWinWithUrl('ele_time','ele_time.html');">
+        <div class="uinn-eo5 ub ubb b-gra-d6 ub-ac">
+            <div class="ub-f1 ulev-4 t-gra-9"> 送货时间：{best_time} </div>
+            <div class="fa fa-angle-right ulev2 sc-text"></div>
+        </div>
+    </div>
+    <div class="uinn-eo3 white-bg" ontouchstart="appcan.touch()" onClick="appcan.openWinWithUrl('ele_phone','ele_phone.html');">
+        <div class="uinn-eo5 ub ubb b-gra-d6 ub-ac">
+            <div class="ub-f1 ulev-4 t-gra-9"> 电话确认：是 </div>
+            <div class="fa fa-angle-right ulev2 sc-text"></div>
+        </div>
+    </div>
+    <div class="uinn-eo3 white-bg" ontouchstart="appcan.touch()" onClick="appcan.openWinWithUrl('ele_note','ele_note.html');">
+        <div class="uinn-eo5 ub ubb b-gra-d6 ub-ac">
+            <div class="ub-f1 ulev-4 t-gra-9"> 备注信息： </div>
+            <div class="fa fa-angle-right ulev2 sc-text"></div>
+        </div>
+    </div>
+    <div class="uinn-eo3 white-bg">
+        <div class="uinn-eo5 ub ubb b-gra-d6 ub-ac">
+            <div class="ub-f1 ulev-4 t-gra-9"> 使用优惠券 </div>
+            <div class="fa fa-angle-right ulev2 sc-text"></div>
+        </div>
+    </div>
+    <div class="space"></div>
+    <div class="f_f ub-fh d_title_bg" >
+        <div class="uinn-a2 ub ub-ac">
+            <div class="ub-f1 ub-ps tx-l ub"> <span class="bc-text-head ulev-3">支付金额：</span><span class="bc-text-head ulev-3">￥{order_amt|money}</span>
+                <div style="right: 0em; position:absolute; top: 0em; " class="ub-f1 f-r tx-r" >
+                    <div class="ub-f1 uinn-details uc-a-details bc-btn2 bc-text-head ulev-1">去结算(9)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    /**
+ * 简易模板处理程序
+ * @auther zkq
+ * 使用方法：
+ * Template.render(data,templateId,target);
+ * Template.renderHtml(data,html); //返回渲染后的html 
+ */
+var Template = {
+    renderHtml : function(data,html){
+        var pattern = /\[loop([^\]]*)\]([\s\S]+?)\[\/loop\]/g;
+        var reg= new RegExp(pattern);
+        var loops = [];
+        var undefined='undefined',result = '',that=this;
+        while(res = reg.exec(html)){
+            var config = {'data':'data','item':'item','index':'__INDEX__','step':1,'skip':0,'start':1};
+            this._each(res[1].split(/\s+/),function(item){
+                arr = item.split("=");
+                config[arr[0]] = arr[1];
+            });   
+            loops.push(that._replaceLoop(data,config,res[2]));
+        }
+        var strs = html.split(/\[loop[^\]]*\][\s\S]+?\[\/loop\]/g);
+        for(var i=0;i<strs.length;i++){
+            result += that._replaceText(data,strs[i])+(typeof loops[i] != undefined ? loops[i] : '');           
+        }        
+        return result;
+    },
+    render : function(data,templateID,target){
+        var objTpl=document.getElementById(templateID);
+        var htmlTpl=objTpl.innerHTML;
+        var objTarget =document.getElementById(target);
+        var html=this.renderHtml(data,htmlTpl);
+        return objTarget?objTarget.innerHTML=html:html;
+    },
+    plugin:{
+        _callbacks :{
+            trim : function(data){
+                var data = data+'';
+                return data.replace(/(^\s*)|(\s*$)/g,'');
+            }
+        },
+        add : function(name,callback){          
+            this._callbacks[name]=callback;
+        },
+        call : function(name,data){
+            if(typeof name == 'undefined' || name=='') return data;
+            var args = [data];
+            if(name.substr(0,1)=='|') name = name.substring(1);         
+            if(name.indexOf('=')>0){
+                args.push(name.substr(name.indexOf('=')+1));
+                name = name.substr(0,name.indexOf('='));
+            }
+            if(typeof this._callbacks[name] == 'function'){
+                return this._callbacks[name].apply(null,args);
+            }else{
+                return data;
+            }
+        },
+    },
+    _each : function(arr,callback){
+        if(typeof callback == 'function'){
+            for(var i=0;i<arr.length;i++){
+                callback.apply(null,[arr[i]]);
+            }
+        }
+    },
+    _replaceText : function(data,tpl){
+        if(data == null) return '';
+        var reg = new RegExp(/\{([a-zA-Z0-9\_\.]+)(\|[a-z0-9_=]+)?\}/i);
+        while(res = reg.exec(tpl)){
+            var val = this._getObjectPart(data,res[1],res[2]);
+            tpl=tpl.replace(res[0],val);
+        }
+        return tpl;
+    },
+    _replaceLoop : function(data,config,tpl){
+        var data = this._getObjectPart(data,config.data);
+        if(data == null) return '';
+        var html = '';
+        if(typeof data[0] != 'undefined'){
+            var index = parseInt(config.start);
+            for(var i=config.skip;i<data.length;i++){
+                var rowText = tpl;
+                var rowData = {};
+                rowData[config.item] =data[i];
+                rowText = this._replaceText(rowData,rowText);
+                html  += rowText.replace("{"+config.item+"."+config.index+"}",index).replace("{__INDEX__}",index);
+                index += parseInt(config.step);             
+            }
+        }
+        return html;
+    },
+    _getObjectPart : function(data,path,type){
+        if(path == '') return data;
+        if(path.indexOf('.') > 0){
+            var parts = path.split('.');
+            for(var i=0;i<parts.length;i++){
+                var part = parts[i];
+                if(typeof data[part] == 'undefined')return '';
+                data = data[part];
+            }            
+        }else{
+            if(typeof data[path] == 'undefined')return null;
+            data = data[path];
+        }
+        return this.plugin.call(type,data);
+    }   
+}
+Template.plugin.add('money',function(data,param){
+    var data = parseFloat(data)*1.00;
+    return data.toFixed(2);
+});
+
+var result = {"code":"000000","message":{"errno":0,"error":"","data":{"user_id":1515334,"consignee":{"address_id":"74227","address_name":"1","user_id":"1515334","consignee":"elen1","email":"asdfas@126.com","country":"1","province":"16","city":"172","district":"431","address":"asdfasdf2","zipcode":"222555","tel":"","mobile":"15666663666","sign_building":"","best_time":"","street":"32623","provincename":"\u5c71\u4e1c","cityname":"\u6d4e\u5357","districtname":"\u5386\u4e0b"},"goods":[{"rec_id":"4618","goods_id":"46672","goods_name":"\u4e50\u6263\u4e50\u6263\u73af\u6c27\u6c34\u676f600mlABF743R\u7ea2","goods_sn":"3904678","num":"1","market_price":"52.00","price":"39.00","image":"http:\/\/img1.yinzuo100.com\/\/images2\/xiugai\/3904678m.jpg"},{"rec_id":"4619","goods_id":"46618","goods_name":"\u4e50\u6263\u4fdd\u9c9c\u76d2850mlHPL808","goods_sn":"3904624","num":"1","market_price":"24.60","price":"19.90","image":"http:\/\/img1.yinzuo100.com\/\/images2\/xiugai\/3904624m.jpg"}],"pay_id":5,"pay_name":"\u652f\u4ed8\u5b9d","how_pay":"\u652f\u4ed8\u5b9d","invoice_type":"\u666e\u901a\u53d1\u7968","payment_list":{"cod":["\u73b0\u91d1","\u94f6\u8054\u5361\u652f\u4ed8","\u94f6\u5ea7\u8d35\u5bbe\u5361","\u5c71\u4e1c\u4e00\u5361\u901a","POS\u5237\u62db\u884c\u5361"],"online":["\u652f\u4ed8\u5b9d","\u94f6\u8054\u5728\u7ebf\u652f\u4ed8"]},"shipping_list":{"yinzuo":"\u94f6\u5ea7\u7f51\u5feb\u9012","ziqu":"\u7edf\u4e00\u94f6\u5ea7\u81ea\u53d6\u70b9"},"shop_list":[{"yz_id":"1","shop_name":"\u5e73\u5b89\u82d1\u5e97","shop_tel":"88921650","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u89e3\u653e\u4e1c\u8def27\u53f7"},{"yz_id":"2","shop_name":"\u53cb\u8c0a\u82d1\u5e97","shop_tel":"88192827","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u53cb\u8c0a\u82d1\u5c0f\u533a\u8425\u4e1a\u623fB3\u53f7\u697c"},{"yz_id":"3","shop_name":"\u6c34\u6cc9\u5e97","shop_tel":"88190673","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u59da\u5bb6\u5c0f\u533a1\u53f7\u697c\u4e00\u5c42"},{"yz_id":"4","shop_name":"\u89e3\u653e\u4e1c\u5e97","shop_tel":"88953060","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u89e3\u653e\u4e1c\u8def103\u53f7"},{"yz_id":"6","shop_name":"\u7ecf\u6d4e\u5b66\u9662\u5e97","shop_tel":"88586101","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u8346\u5c71\u8def\u5c71\u4e1c\u7ecf\u6d4e\u5b66\u9662\u5357\u95e8\u5bf9\u9762"},{"yz_id":"7","shop_name":"\u5ba1\u8ba1\u5e72\u6821\u5e97","shop_tel":"88521291","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u6d46\u6c34\u6cc9\u8def11\u53f7\u9662\u5185"},{"yz_id":"8","shop_name":"\u9ec4\u91d1\u5e97","shop_tel":"88921327","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u7538\u67f3\u65b0\u6751\u4e00\u533a1\u53f7"},{"yz_id":"10","shop_name":"\u6587\u5316\u5e97","shop_tel":"88510963","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u7538\u67f3\u5e84\u516b\u533a3\u53f7\u697c\uff08\u6587\u5316\u4e1c\u8def\u4e1c\u9996\uff0c\u4e2d\u5efa\u6587\u5316\u57ce\u5bf9\u9762\u5373\u662f\uff09"},{"yz_id":"12","shop_name":"\u8b66\u5bdf\u5b66\u9662\u5e97","shop_tel":"62331096","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u6587\u5316\u4e1c\u8def50\u53f7-9"},{"yz_id":"13","shop_name":"\u957f\u8679\u5e97","shop_tel":"88152279","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u71d5\u5b50\u5c71\u8def21\u53f7 "},{"yz_id":"14","shop_name":"\u7ecf\u5341\u8def\u5e97","shop_tel":"82666755","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u7ecf\u5341\u8def69\u53f7"},{"yz_id":"15","shop_name":"\u5343\u4f5b\u5c71\u5e97","shop_tel":"82912375","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u7ecf\u5341\u4e00\u8def32\u53f7"},{"yz_id":"16","shop_name":"\u4f5b\u5c71\u82d1\u5e97","shop_tel":"86900769","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u4f5b\u5c71\u82d1\u5c0f\u533a\u4e09\u533a13-15\u53f7\u697c"},{"yz_id":"17","shop_name":"\u5e08\u4e1c\u5e97","shop_tel":"86947790","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u5c71\u5e08\u4e1c\u8def6\u53f7"},{"yz_id":"18","shop_name":"\u5386\u5c71\u5229\u519c\u5e97","shop_tel":"86955287","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u5386\u5c71\u8def48\u53f7"},{"yz_id":"19","shop_name":"\u5386\u5c71\u5e97","shop_tel":"86992779","shop_addr":"\u6d4e\u5357\u5e02\u5386\u5c71\u8def10\u53f7"},{"yz_id":"20","shop_name":"\u548c\u5e73\u5386\u4e1c\u5e97","shop_tel":"81932182","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u548c\u5e73\u8def34\u53f7 "},{"yz_id":"21","shop_name":"\u548c\u5e73\u5e97","shop_tel":"88152305","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u71d5\u5c71\u5c0f\u533a\u5317\u533a\u5357\u95e8\u65c1"},{"yz_id":"22","shop_name":"\u5386\u5c71\u548c\u5e73\u5e97","shop_tel":"86961575","shop_addr":"\u6d4e\u5357\u5e02\u5386\u5c71\u8def114\u53f7"},{"yz_id":"23","shop_name":"\u4e8c\u73af\u4e1c\u5e97","shop_tel":"88953917","shop_addr":"\u6d4e\u5357\u5e02\u89e3\u653e\u8def\u4e1c\u9996\u5bcc\u83b1\u5927\u9152\u5e97\u4e00\u5c42"},{"yz_id":"24","shop_name":"\u957f\u76db\u5e97","shop_tel":"86412425","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u4e1c\u5173\u5927\u885739\u53f7"},{"yz_id":"25","shop_name":"\u6309\u5bdf\u53f8\u5e97","shop_tel":"86906206","shop_addr":"\u6d4e\u5357\u5386\u4e0b\u533a\u660e\u6e56\u5c0f\u533a\u4e1c\u4e09\u533a4\u53f7\u697c\u4e0b\u5546\u94fa"},{"yz_id":"26","shop_name":"\u5c71\u5927\u9752\u540e\u5e97","shop_tel":"86953705","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u9752\u540e\u5c0f\u533a4\u53f7\u697c\u5e95\u5c426\u30017\u53f7\u697c"},{"yz_id":"27","shop_name":"\u9752\u9f99\u6865\u5e97","shop_tel":"86980701","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u89e3\u653e\u8def164\u53f7"},{"yz_id":"28","shop_name":"\u5c71\u5927\u671b\u71d5\u5e97","shop_tel":"82951579","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u5c71\u5927\u8def213\u53f7"},{"yz_id":"29","shop_name":"\u5343\u533b\u5e97","shop_tel":"82611170","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u5c71\u5e08\u4e1c\u8def25\u53f7\u4e00\u5c42\u8425\u4e1a\u623f"},{"yz_id":"31","shop_name":"\u5f00\u5143\u5e97","shop_tel":"82958671 82955762","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u73af\u5c71\u8def47\u53f7"},{"yz_id":"33","shop_name":"\u9ec4\u91d1\u4f73\u82d1\u5e97","shop_tel":"86112065","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u65c5\u6e38\u8def\u9ec4\u91d1\u4f73\u82d1102\u53f7"},{"yz_id":"34","shop_name":"\u8f6c\u5c71\u897f\u5e97","shop_tel":"88952750","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u5386\u4e0b\u533a\u8f6c\u5c71\u897f\u8def3\u53f7"},{"yz_id":"35","shop_name":"\u8fbe\u76db\u5e97","shop_tel":"86563975","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u5229\u519c\u8def1\u53f7"},{"yz_id":"37","shop_name":"\u95f5\u5b50\u9a9e\u5357\u5e97","shop_tel":"88921617","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u89e3\u653e\u8def23\u53f7"},{"yz_id":"38","shop_name":"\u5de5\u4e1a\u5357\u8def\u5e97","shop_tel":"82961105","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u5de5\u4e1a\u5357\u8def102\u53f7"},{"yz_id":"127","shop_name":"\u8346\u5c71\u65b0\u5c45\u5e97","shop_tel":"88955769","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u6d46\u6c34\u6cc9\u8def28\u53f7\u6cbf\u8857\u5546\u94fa4\u30015\u30016\u53f7"},{"yz_id":"134","shop_name":"\u548c\u5e73\u4e1c\u5e97","shop_tel":"67871121","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u548c\u5e73\u4e1c\u8def12\u53f7-1"},{"yz_id":"136","shop_name":"\u653f\u6cd5\u5b66\u9662\u5e97","shop_tel":"83532306","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u6d46\u6c34\u6cc9\u8def\u5317\u9996\u798f\u6cc9\u5927\u53a6\u4e00\u5c42"},{"yz_id":"143","shop_name":"\u96c5\u58eb\u56ed\u5e97","shop_tel":"86402295","shop_addr":"\u5386\u4e0b\u533a\u5229\u519c\u8def29\u53f7\u96c5\u58eb\u56ed6\u53f7\u697c4\u5355\u5143101\u3001102\u53f7"},{"yz_id":"146","shop_name":"\u6d77\u5c14\u7eff\u57ce\u5e97","shop_tel":"86941106","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u6d77\u5c14\u7eff\u57ce\u767e\u5408\u82d117\u53f7\u697c"},{"yz_id":"158","shop_name":"\u5efa\u7b51\u65b0\u6751\u5e97","shop_tel":"86563552","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u5c71\u5927\u5357\u8def60\u53f7"},{"yz_id":"159","shop_name":"\u71d5\u4e1c\u5e97","shop_tel":"88581875","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u71d5\u5b50\u5c71\u4e1c\u8def11\u53f7"},{"yz_id":"160","shop_name":"\u71d5\u6587\u897f\u8def\u5e97","shop_tel":"88685062","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u6587\u5316\u4e1c\u8def36\u53f7\u7efc\u5408\u8425\u4e1a\u697c\u4e00\u697c"},{"yz_id":"161","shop_name":"\u5343\u4f5b\u5c71\u4e1c\u5e97","shop_tel":"82611020","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u5343\u4f5b\u5c71\u4e1c\u8def45\u53f7"},{"yz_id":"162","shop_name":"\u73af\u5c71\u4e2d\u8054\u5e97","shop_tel":"82620983","shop_addr":"\u6d4e\u5357\u5e02\u5386\u4e0b\u533a\u71d5\u5b50\u5c71\u897f\u8def\u5357\u9996"}],"shipping_id":3,"shipping_name":"\u94f6\u5ea7\u7f51\u5feb\u9012","best_time":"","deliver_goods_time":"","is_tel_confirm":"","goods_price":58.9,"discount":0,"post_price":0,"total_price":58.9,"order_amt":58.9,"pack_id":0,"card_id":0,"bonus":0,"integral":59,"surplus":0,"user_money":"2484.28"}}} ;
+window.onload = function(){
+    Template.render(result.message.data,'template','inner');
+}
+    </script>
+</html>
